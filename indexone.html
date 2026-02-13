@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schülerpraktikum KfW</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 { text-align: center; color: #003399; margin-top: 0; }
+        h2 { color: #555; border-bottom: 2px solid #003399; padding-bottom: 10px; margin-top: 30px; }
+        p { line-height: 1.6; text-align: justify; }
+        a { color: #003399; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95em; }
+        th { background-color: #003399; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #ddd; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #e6f7ff; }
+
+        .party-btn {
+            display: block;
+            margin: 40px auto 0 auto;
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #e3000f;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .party-btn:hover { background-color: #cc000e; transform: scale(1.05); }
+        .party-btn:active { transform: scale(0.95); }
+
+        #balloon-container {
+            height: 100vh;
+            padding: 1em;
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: hidden;
+            transition: opacity 500ms;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .balloon {
+            height: 125px;
+            width: 105px;
+            border-radius: 75% 75% 70% 70%;
+            position: relative;
+            pointer-events: none;
+            cursor: pointer;
+        }
+
+        .balloon:before {
+            content: "";
+            height: 75px;
+            width: 1px;
+            padding: 1px;
+            background-color: rgba(0,0,0,0.2);
+            display: block;
+            position: absolute;
+            top: 125px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .balloon:after {
+            content: "▲";
+            text-align: center;
+            display: block;
+            position: absolute;
+            color: inherit;
+            top: 120px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        @keyframes float {
+            from { transform: translateY(100vh); opacity: 1; }
+            to { transform: translateY(-300vh); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Tagesablauf in der KfW</h1>
+
+        <h2>Meine bisherige Erfahrung</h2>
+        <p>
+            Mein Praktikum bei der <a href="https://www.kfw.de/kfw-de.html" target="_blank">KfW</a> ist bisher sehr spannend und abwechslungsreich.
+            Ich durfte die verschiedenen Bereiche der IT-Abteilung kennenlernen und Einblicke in die Arbeitsabläufe erhalten.
+            Besonders interessant fand ich das Thema Datenbanken, bei dem ich gelernt habe, wie Daten gespeichert werden und welche Datenbanktypen es gibt.
+            Außerdem konnte ich erste SQL-Abfragen praktisch ausprobieren. Zusätzlich habe ich angefangen, HTML zu lernen und eine eigene Webseite nach Vorgaben zu programmieren.
+            Das Praktikum macht mir viel Spaß.
+        </p>
+
+        <h2>Tätigkeiten-Protokoll</h2>
+       
+        <table>
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Tag</th>
+                    <th>Tätigkeit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>09.02.2026</td>
+                    <td>Tag 1</td>
+                    <td>Heute habe ich die Mitarbeiter, die Bereiche und Prozesse der KfW kennengelernt.</td>
+                </tr>
+                <tr>
+                    <td>10.02.2026</td>
+                    <td>Tag 2</td>
+                    <td>Heute habe ich mir Datenbanksysteme angeschaut und SQL-Abfragen in einem Testtool getätigt.</td>
+                </tr>
+                <tr>
+                    <td>11.02.2026</td>
+                    <td>Tag 3</td>
+                    <td>Heute habe ich mir Hard- und Soft-Skills und die W-Fragen angesehen und angefangen, eine HTML-Seite zu programmieren.</td>
+                </tr>
+                <tr>
+                    <td>12.02.2026</td>
+                    <td>Tag 4</td>
+                    <td>Heute habe ich weiter an meiner HTML-Seite gearbeitet und die Grundlagen von CSS kennengelernt.</td>
+                </tr>
+                <tr>
+                    <td>13.02.2026</td>
+                    <td>Tag 5</td>
+                    <td>Heute werde ich meine Webseite vorstellen und diese weiter ausbauen.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="party-btn" onclick="createBalloons(30)">🎉 Feiern!</button>
+
+    </div>
+
+    <div id="balloon-container"></div>
+
+    <script>
+        const balloonContainer = document.getElementById("balloon-container");
+
+        function random(num) {
+            return Math.floor(Math.random() * num);
+        }
+
+        function getRandomStyles() {
+            var r = random(255);
+            var g = random(255);
+            var b = random(255);
+            var mt = random(200);
+            var ml = random(50);
+            var dur = random(5) + 5;
+           
+            return `
+            background-color: rgba(${r},${g},${b},0.7);
+            color: rgba(${r},${g},${b},0.7);
+            box-shadow: inset -7px -3px 10px rgba(${r - 10},${g - 10},${b - 10},0.7);
+            margin: ${mt}px 0 0 ${ml}px;
+            animation: float ${dur}s ease-in infinite;
+            `;
+        }
+
+        function createBalloons(num) {
+            balloonContainer.innerHTML = "";
+            balloonContainer.style.opacity = 1;
+
+            for (var i = num; i > 0; i--) {
+                var balloon = document.createElement("div");
+                balloon.className = "balloon";
+                balloon.style.cssText = getRandomStyles();
+               
+
+                balloonContainer.append(balloon);
+            }
+        }
+
+        window.addEventListener("click", function(e) {
+            if (e.target === balloonContainer) {
+                balloonContainer.style.opacity = 0;
+                setTimeout(() => {
+                    balloonContainer.innerHTML = "";
+                }, 500)
+            }
+        });
+        setTimeout(() => {
+        balloonContainer.style.opacity = 0;
+        setTimeout(() => {
+        balloonContainer.innerHTML = "";
+        balloonContainer.style.opacity = 1;
+        }, 500);
+}, 5000);
+
+    </script>
+
+</body>
+</html>
