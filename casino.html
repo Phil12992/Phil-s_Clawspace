@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Projekt | Philipp</title>
+    <style>
+        :root {
+            --primary: #00ff88;
+            --darker: #051005;
+            --glass: rgba(0, 255, 136, 0.08);
+            --glass-hover: rgba(0, 255, 136, 0.15);
+            --text: #e0ffe0;
+            --text-muted: #a0d0a0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--darker); color: var(--text); line-height: 1.6; }
+        nav { position: fixed; top: 0; left: 0; right: 0; padding: 1rem 2rem; display: flex; justify-content: space-between; background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent); z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+        .theme-toggle { background: var(--glass); border: 1px solid var(--glass-hover); padding: 0.5rem 1rem; border-radius: 25px; color: var(--text); cursor: pointer; }
+        .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; }
+        h1 { font-size: clamp(2rem, 6vw, 4rem); color: var(--primary); margin-bottom: 1rem; }
+        .subtitle { font-size: 1.3rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
+        .btn { padding: 1rem 2.5rem; background: var(--primary); color: var(--darker); text-decoration: none; border-radius: 50px; font-size: 1.1rem; font-weight: 600; transition: transform 0.3s; }
+        .btn:hover { transform: translateY(-3px); }
+        section { padding: 3rem 2rem; max-width: 900px; margin: 0 auto; }
+        .content-card { background: var(--glass); border: 1px solid var(--glass-hover); border-radius: 20px; padding: 2rem; margin-bottom: 2rem; }
+        .content-card h2 { color: var(--primary); margin-bottom: 1rem; }
+        .content-card p { color: var(--text-muted); margin-bottom: 0.8rem; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .feature { background: rgba(0,255,136,0.1); padding: 1rem; border-radius: 10px; border-left: 3px solid var(--primary); color: var(--text-muted); }
+        .highlight { background: rgba(0,255,136,0.1); border: 1px solid var(--primary); border-radius: 10px; padding: 1rem; margin: 1rem 0; }
+        .highlight strong { color: var(--primary); }
+        footer { text-align: center; padding: 3rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">← Portfolio</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </nav>
+
+    <section class="hero">
+        <h1>🎰 Casino Projekt</h1>
+        <p class="subtitle">Mein eigenes Casino-Spiel mit Python und Streamlit.</p>
+        <a href="https://phil12992.github.io/Casino2.0/" target="_blank" class="btn">🎮 Spiel ausprobieren</a>
+    </section>
+
+    <section>
+        <div class="content-card">
+            <h2>📋 Projektübersicht</h2>
+            <p>Das Casino-Projekt ist ein interaktives Glücksspiel, das ich komplett selbst entwickelt habe. Es bietet verschiedene Casino-Spiele wie Roulette und mehr.</p>
+            <p>Das Projekt zeigt, wie man Python mit einer modernen Benutzeroberfläche verbinden kann.</p>
+        </div>
+
+        <div class="content-card">
+            <h2>👨‍💻 Eigenleistung</h2>
+            <div class="highlight">
+                <p><strong>Alles selbst gemacht:</strong></p>
+                <p>✅ Python-Spielelogik komplett selbst geschrieben</p>
+                <p>✅ Gewinnberechnungen und Wahrscheinlichkeiten</p>
+                <p>✅ Spielmechanik und Regeln</p>
+                <p>✅ Geldverwaltung (Einsätze, Gewinne)</p>
+                <p>✅ Logik und Programmierung</p>
+                <br>
+                <p><strong>Streamlit:</strong></p>
+                <p>🔧 Nur die Benutzeroberfläche (GUI) wurde mit Streamlit erstellt</p>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>🛠️ Verwendete Technologien</h2>
+            <div class="features">
+                <div class="feature">🐍 Python</div>
+                <div class="feature">🎰 Spielelogik</div>
+                <div class="feature">📊 Streamlit</div>
+                <div class="feature">🎮 GUI</div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>💡 Was ich gelernt habe</h2>
+            <p>• Programmierung von Spielelogik in Python</p>
+            <p>• Grundlagen von Glücksspielen und Wahrscheinlichkeiten</p>
+            <p>• Erstellen einer interaktiven Web-Oberfläche</p>
+            <p>• Verknüpfung von Backend und Frontend</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Philipp. Made with 💚</p>
+    </footer>
+
+    <script>
+        let isDark = true;
+        function toggleTheme() {
+            isDark = !isDark;
+            if (isDark) {
+                document.documentElement.style.setProperty('--darker', '#051005');
+                document.documentElement.style.setProperty('--text', '#e0ffe0');
+                document.documentElement.style.setProperty('--text-muted', '#a0d0a0');
+            } else {
+                document.documentElement.style.setProperty('--darker', '#ffffff');
+                document.documentElement.style.setProperty('--text', '#1a1a1a');
+                document.documentElement.style.setProperty('--text-muted', '#444444');
+            }
+        }
+    </script>
+</body>
+</html>
