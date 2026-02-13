@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KfW Projekt | Philipp</title>
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #00cc6a;
+            --accent: #00ffaa;
+            --dark: #0a0f0a;
+            --darker: #051005;
+            --light: #e0ffe0;
+            --glass: rgba(0, 255, 136, 0.05);
+            --glass-hover: rgba(0, 255, 136, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .back-btn {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary);
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-hover);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .content-card p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .feature {
+            background: rgba(0,255,136,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: rgba(255,255,255,0.5);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">← Zurück</a>
+        <a href="index.html" class="back-btn">← Portfolio</a>
+    </nav>
+
+    <section class="hero">
+        <h1>KfW Projekt</h1>
+        <p class="subtitle">Meine Webseite, die ich während meines KfW Besuchs erstellt habe.</p>
+    </section>
+
+    <section>
+        <div class="content-card">
+            <h2>Über das Projekt</h2>
+            <p>Während meines Besuchs bei der KfW habe ich diese Webseite erstellt. Es war eine tolle Erfahrung, praktische Erfahrung im Web-Development zu sammeln.</p>
+            <p>Die Webseite zeigt, was ich in kurzer Zeit mit HTML, CSS und JavaScript umsetzen kann.</p>
+        </div>
+
+        <div class="content-card">
+            <h2>Technologien</h2>
+            <div class="features">
+                <div class="feature">🌐 HTML5</div>
+                <div class="feature">🎨 CSS3</div>
+                <div class="feature">⚡ JavaScript</div>
+                <div class="feature">📱 Responsive Design</div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Was ich gelernt habe</h2>
+            <p>• Praktische Webentwicklung</p>
+            <p>• Zeitmanagement unter Realbedingungen</p>
+            <p>• Kundenorientierte Umsetzung</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Philipp. Made with 💚</p>
+    </footer>
+</body>
+</html>

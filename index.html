@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Philipp | Programmer & AI Enthusiast</title>
     <style>
-        /* GRÜNES COOLES DESIGN */
         :root {
-            --primary: #00ff88;      /* Neon-Grün */
-            --secondary: #00cc6a;    /* Dunkler Grün */
-            --accent: #00ffaa;       /* Hell-Grün */
-            --dark: #0a0f0a;         /* Sehr dunkel Grün */
-            --darker: #051005;       /* Fast schwarz */
-            --light: #e0ffe0;        /* Helles Grün-Weiß */
+            --primary: #00ff88;
+            --secondary: #00cc6a;
+            --accent: #00ffaa;
+            --dark: #0a0f0a;
+            --darker: #051005;
+            --light: #e0ffe0;
             --glass: rgba(0, 255, 136, 0.05);
             --glass-hover: rgba(0, 255, 136, 0.1);
         }
@@ -26,10 +25,10 @@
             line-height: 1.6;
         }
 
-        /* NAV */
         nav {
             position: fixed;
-            top: 0; left: 0; right: 0; z-index: 1000;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
@@ -58,7 +57,6 @@
         }
         .theme-toggle:hover { background: var(--primary); color: var(--dark); }
 
-        /* HERO */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -95,39 +93,20 @@
             transition: all 0.3s;
         }
 
-        .btn-primary {
-            background: var(--primary);
-            color: var(--dark);
-        }
+        .btn-primary { background: var(--primary); color: var(--dark); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,255,136,0.3); }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
+        .btn-secondary { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
         .btn-secondary:hover { background: var(--primary); color: var(--dark); }
 
-        /* SECTIONS */
         section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
 
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary);
-        }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--primary); }
 
-        /* ABOUT */
         .about { text-align: center; max-width: 700px; margin: 0 auto; }
         .about p { font-size: 1.2rem; color: rgba(255,255,255,0.8); }
 
-        /* SKILLS */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-        }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; }
 
         .skill-card {
             background: var(--glass);
@@ -141,12 +120,7 @@
         .skill-icon { font-size: 3rem; margin-bottom: 1rem; }
         .skill-name { font-weight: 600; font-size: 1.1rem; }
 
-        /* PROJECTS */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
 
         .project-card {
             background: var(--glass);
@@ -154,28 +128,20 @@
             border-radius: 15px;
             padding: 2rem;
             transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
         }
         .project-card:hover { border-color: var(--primary); transform: translateY(-5px); }
         .project-title { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--primary); }
         .project-desc { color: rgba(255,255,255,0.7); }
 
-        /* CONTACT */
         .contact { text-align: center; }
-        .contact-email {
-            font-size: 1.5rem;
-            color: var(--primary);
-            text-decoration: none;
-        }
+        .contact-email { font-size: 1.5rem; color: var(--primary); text-decoration: none; }
         .contact-email:hover { text-decoration: underline; }
 
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 3rem;
-            color: rgba(255,255,255,0.5);
-        }
+        footer { text-align: center; padding: 3rem; color: rgba(255,255,255,0.5); }
 
-        /* MOBILE */
         .mobile-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
         @media (max-width: 768px) {
             .mobile-toggle { display: block; }
@@ -217,32 +183,20 @@
     <section id="skills">
         <h2 class="section-title">Meine Skills</h2>
         <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon">🐍</div>
-                <p class="skill-name">Python</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🌐</div>
-                <p class="skill-name">HTML</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🤖</div>
-                <p class="skill-name">AI/KI</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">💻</div>
-                <p class="skill-name">Programmieren</p>
-            </div>
+            <div class="skill-card"><div class="skill-icon">🐍</div><p class="skill-name">Python</p></div>
+            <div class="skill-card"><div class="skill-icon">🌐</div><p class="skill-name">HTML</p></div>
+            <div class="skill-card"><div class="skill-icon">🤖</div><p class="skill-name">AI/KI</p></div>
+            <div class="skill-card"><div class="skill-icon">💻</div><p class="skill-name">Programmieren</p></div>
         </div>
     </section>
 
     <section id="projects">
         <h2 class="section-title">Projekte</h2>
         <div class="projects-grid">
-            <div class="project-card">
-                <h3 class="project-title">KfW Besuch Webseite</h3>
+            <a href="kfw.html" class="project-card">
+                <h3 class="project-title">🏦 KfW Projekt</h3>
                 <p class="project-desc">Webseite, die ich während meines KfW Besuchs erstellt habe.</p>
-            </div>
+            </a>
             <div class="project-card">
                 <h3 class="project-title">Weitere Projekte...</h3>
                 <p class="project-desc">Folgen in Kürze! Lass uns zusammen was bauen.</p>
@@ -263,7 +217,6 @@
     </footer>
 
     <script>
-        // Theme Toggle
         let isDark = true;
         function toggleTheme() {
             isDark = !isDark;
@@ -280,7 +233,6 @@
             }
         }
 
-        // Mobile Menu
         function toggleMenu() {
             document.querySelector('.nav-links').classList.toggle('active');
         }
