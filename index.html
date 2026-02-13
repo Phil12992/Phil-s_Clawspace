@@ -7,140 +7,53 @@
     <style>
         :root {
             --primary: #00ff88;
-            --secondary: #00cc6a;
-            --accent: #00ffaa;
-            --dark: #0a0f0a;
             --darker: #051005;
-            --light: #e0ffe0;
             --glass: rgba(0, 255, 136, 0.08);
             --glass-hover: rgba(0, 255, 136, 0.15);
             --text: #e0ffe0;
             --text-muted: #a0d0a0;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: var(--darker);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
-            backdrop-filter: blur(10px);
-        }
-
+        body { font-family: 'Segoe UI', sans-serif; background: var(--darker); color: var(--text); line-height: 1.6; }
+        nav { position: fixed; top: 0; left: 0; right: 0; padding: 1rem 2rem; display: flex; justify-content: space-between; background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent); z-index: 1000; }
         .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
-
         .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--text); text-decoration: none; transition: color 0.3s; }
+        .nav-links a { color: var(--text); text-decoration: none; }
         .nav-links a:hover { color: var(--primary); }
-
-        .theme-toggle {
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            color: var(--text);
-            cursor: pointer;
-        }
-        .theme-toggle:hover { background: var(--primary); color: var(--darker); }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 800; color: var(--primary); margin-bottom: 1rem; }
-        .hero .subtitle { font-size: 1.5rem; color: var(--text-muted); margin-bottom: 2rem; }
-        .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
+        .theme-toggle { background: var(--glass); border: 1px solid var(--glass-hover); padding: 0.5rem 1rem; border-radius: 25px; color: var(--text); cursor: pointer; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); color: var(--primary); margin-bottom: 1rem; }
+        .hero .subtitle { color: var(--text-muted); margin-bottom: 2rem; }
+        .hero-btns { display: flex; gap: 1rem; }
+        .btn { padding: 1rem 2rem; border-radius: 50px; text-decoration: none; transition: transform 0.3s; }
         .btn-primary { background: var(--primary); color: var(--darker); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,255,136,0.3); }
-
-        .btn-secondary { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
-        .btn-secondary:hover { background: var(--primary); color: var(--darker); }
-
+        .btn-primary:hover { transform: translateY(-3px); }
+        .btn-secondary { border: 2px solid var(--primary); color: var(--primary); }
         section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
         .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--primary); }
-
         .about { text-align: center; max-width: 700px; margin: 0 auto; }
-        .about p { font-size: 1.2rem; color: var(--text-muted); }
-
+        .about p { color: var(--text-muted); }
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; }
-
-        .skill-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .skill-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .skill-card { background: var(--glass); border: 1px solid var(--glass-hover); border-radius: 15px; padding: 2rem; text-align: center; }
         .skill-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .skill-name { font-weight: 600; font-size: 1.1rem; }
-
+        .skill-name { font-weight: 600; }
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-
-        .project-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            display: block;
-        }
-        .project-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .project-title { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--primary); }
+        .project-card { background: var(--glass); border: 1px solid var(--glass-hover); border-radius: 15px; padding: 2rem; text-decoration: none; color: var(--text); display: block; transition: transform 0.3s; }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .project-title { color: var(--primary); margin-bottom: 0.5rem; }
         .project-desc { color: var(--text-muted); }
-
         .contact { text-align: center; }
-        .contact-email { font-size: 1.5rem; color: var(--primary); text-decoration: none; }
-        .contact-email:hover { text-decoration: underline; }
-
+        .contact-email { color: var(--primary); text-decoration: none; font-size: 1.2rem; }
         footer { text-align: center; padding: 3rem; color: var(--text-muted); }
-
-        .mobile-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
         @media (max-width: 768px) {
-            .mobile-toggle { display: block; }
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); flex-direction: column; padding: 2rem; }
-            .nav-links.active { display: flex; }
+            .mobile-toggle { display: block; background: none; border: none; color: white; font-size: 1.5rem; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="logo">Philipp</div>
-        <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
         <ul class="nav-links">
             <li><a href="#about">Über</a></li>
             <li><a href="#skills">Skills</a></li>
@@ -163,7 +76,7 @@
         <h2 class="section-title">Über Mich</h2>
         <div class="about">
             <p>Hallo! Ich bin Philipp, ein Programmierer aus Deutschland.</p>
-            <p style="margin-top: 1rem;">Ich liebe es, mit Code zu arbeiten und KI zu nutzen, um coole Dinge zu bauen.</p>
+            <p style="margin-top:1rem">Ich liebe es, mit Code zu arbeiten und KI zu nutzen, um coole Dinge zu bauen.</p>
         </div>
     </section>
 
@@ -182,23 +95,19 @@
         <div class="projects-grid">
             <a href="kfw.html" class="project-card">
                 <h3 class="project-title">🏦 KfW Projekt</h3>
-                <p class="project-desc">Webseite, die ich während meines KfW Besuchs erstellt habe.</p>
+                <p class="project-desc">Meine Webseite vom KfW Praktikum.</p>
             </a>
-            <div class="project-card">
             <a href="casino.html" class="project-card">
-                <h3 class="project-title">🎰 Casino Projekt</h3>
-                <p class="project-desc">Mein eigenes Casino-Spiel mit Python.</p>
+                <h3 class="project-title">🎰 Casino</h3>
+                <p class="project-desc">Casino-Spiel mit Python & Streamlit.</p>
             </a>
-                <h3 class="project-title">Weitere Projekte...</h3>
-                <p class="project-desc">Folgen in Kürze! Lass uns zusammen was bauen.</p>
-            </div>
         </div>
     </section>
 
     <section id="contact">
         <h2 class="section-title">Kontakt</h2>
         <div class="contact">
-            <p style="margin-bottom: 1rem;">Melde dich gerne!</p>
+            <p style="margin-bottom:1rem">Melde dich gerne!</p>
             <a href="mailto:phil.bruell@gmail.com" class="contact-email">phil.bruell@gmail.com</a>
         </div>
     </section>
@@ -211,25 +120,8 @@
         let isDark = true;
         function toggleTheme() {
             isDark = !isDark;
-            if (isDark) {
-                document.documentElement.style.setProperty('--darker', '#051005');
-                document.documentElement.style.setProperty('--dark', '#0a0f0a');
-                document.documentElement.style.setProperty('--light', '#e0ffe0');
-                document.documentElement.style.setProperty('--text', '#e0ffe0');
-                document.documentElement.style.setProperty('--text-muted', '#a0d0a0');
-                document.body.style.background = '#051005';
-            } else {
-                document.documentElement.style.setProperty('--darker', '#ffffff');
-                document.documentElement.style.setProperty('--dark', '#f0fff0');
-                document.documentElement.style.setProperty('--light', '#1a1a1a');
-                document.documentElement.style.setProperty('--text', '#1a3a1a');
-                document.documentElement.style.setProperty('--text-muted', '#2a5a2a');
-                document.body.style.background = '#ffffff';
-            }
-        }
-
-        function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
+            document.documentElement.style.setProperty('--darker', isDark ? '#051005' : '#ffffff');
+            document.body.style.background = isDark ? '#051005' : '#ffffff';
         }
     </script>
 </body>
