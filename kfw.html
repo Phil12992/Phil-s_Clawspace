@@ -3,45 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willkommen | Philipp</title>
+    <title>KfW Projekt | Philipp</title>
     <style>
         :root {
             --primary: #00ff88;
+            --secondary: #00cc6a;
             --darker: #051005;
+            --dark: #0a0f0a;
+            --light: #e0ffe0;
+            --glass: rgba(0, 255, 136, 0.08);
+            --glass-hover: rgba(0, 255, 136, 0.15);
             --text: #e0ffe0;
             --text-muted: #a0d0a0;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
             background: var(--darker);
             color: var(--text);
-            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .theme-toggle {
+            background: var(--glass);
+            border: 1px solid var(--glass-hover);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            color: var(--text);
+            cursor: pointer;
+        }
+        .theme-toggle:hover { background: var(--primary); color: var(--darker); }
+
+        .hero {
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             text-align: center;
             padding: 2rem;
         }
-        h1 { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; }
-        p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; }
+
+        h1 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
         .btn {
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             background: var(--primary);
             color: var(--darker);
             text-decoration: none;
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 600;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .btn:hover { transform: scale(1.05); }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-hover);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .content-card p {
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .feature {
+            background: rgba(0, 255, 136, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid var(--primary);
+            color: var(--text-muted);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .hero { min-height: 50vh; }
+        }
     </style>
 </head>
 <body>
-    <h1>🏦 KfW Projekt</h1>
-    <p>Meine Webseite vom KfW Besuch</p>
-    <a href="indexone.html" class="btn">🌐 Webseite besuchen →</a>
+    <nav>
+        <a href="index.html" class="logo">← Portfolio</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </nav>
+
+    <section class="hero">
+        <h1>🏦 KfW Projekt</h1>
+        <p class="subtitle">
+            Während meines Besuchs bei der KfW habe ich diese Webseite erstellt. 
+            Es war eine tolle Erfahrung, praktische Erfahrung im Web-Development zu sammeln.
+        </p>
+        <a href="indexone.html" class="btn">🌐 Webseite besuchen →</a>
+    </section>
+
+    <section>
+        <div class="content-card">
+            <h2>📋 Projektübersicht</h2>
+            <p>
+                Im Rahmen meines KfW Besuchs durfte ich eine vollständige Webseite entwickeln. 
+                Das Projekt bot mir die Möglichkeit, meine Fähigkeiten in der praktischen 
+                Webentwicklung unter Beweis zu stellen.
+            </p>
+            <p>
+                Die Webseite wurde von Grund auf mit HTML, CSS und JavaScript erstellt 
+                und ist vollständig responsiv für alle Geräte optimiert.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2>🛠️ Verwendete Technologien</h2>
+            <div class="features">
+                <div class="feature">🌐 HTML5</div>
+                <div class="feature">🎨 CSS3</div>
+                <div class="feature">⚡ JavaScript</div>
+                <div class="feature">📱 Responsive Design</div>
+                <div class="feature">🎯 UX/UI Design</div>
+                <div class="feature">⚡ Performance</div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>📅 Projektverlauf</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <p><strong>Tag 1:</strong> Projektplanung und Konzeption</p>
+                </div>
+                <div class="timeline-item">
+                    <p><strong>Tag 2-3:</strong> HTML Struktur und Inhalte</p>
+                </div>
+                <div class="timeline-item">
+                    <p><strong>Tag 4:</strong> Styling mit CSS</p>
+                </div>
+                <div class="timeline-item">
+                    <p><strong>Tag 5:</strong> JavaScript und Interaktionen</p>
+                </div>
+                <div class="timeline-item">
+                    <p><strong>Tag 6:</strong> Testing und Optimierung</p>
+                </div>
+                <div class="timeline-item">
+                    <p><strong>Tag 7:</strong> Launch und Präsentation</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>💡 Was ich gelernt habe</h2>
+            <p>• Praktische Webentwicklung unter realistischen Bedingungen</p>
+            <p>• Zeitmanagement und Projektplanung</p>
+            <p>• Kundenorientierte Umsetzung von Anforderungen</p>
+            <p>• Responsive Design für verschiedene Geräte</p>
+            <p>• Grundlagen von UX/UI Design</p>
+        </div>
+
+        <div class="content-card">
+            <h2>🎯 Highlights</h2>
+            <p>✅ Moderne, ansprechende Benutzeroberfläche</p>
+            <p>✅ Vollständig responsiv für Mobile und Desktop</p>
+            <p>✅ Schnelle Ladezeiten</p>
+            <p>✅ Barrierefreie Gestaltung</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Philipp. Made with 💚</p>
+    </footer>
+
+    <script>
+        let isDark = true;
+        function toggleTheme() {
+            isDark = !isDark;
+            if (isDark) {
+                document.documentElement.style.setProperty('--darker', '#051005');
+                document.documentElement.style.setProperty('--dark', '#0a0f0a');
+                document.documentElement.style.setProperty('--text', '#e0ffe0');
+                document.documentElement.style.setProperty('--text-muted', '#a0d0a0');
+                document.body.style.background = '#051005';
+            } else {
+                document.documentElement.style.setProperty('--darker', '#ffffff');
+                document.documentElement.style.setProperty('--dark', '#f0fff0');
+                document.documentElement.style.setProperty('--text', '#1a3a1a');
+                document.documentElement.style.setProperty('--text-muted', '#2a5a2a');
+                document.body.style.background = '#ffffff';
+            }
+        }
+    </script>
 </body>
 </html>
