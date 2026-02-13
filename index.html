@@ -1,971 +1,18 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phil's Space | Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #00d4ff;
-            --secondary: #7b2cbf;
-            --accent: #ff006e;
-            --dark: #0a0a0f;
-            --darker: #050508;
-            --light: #f0f0f0;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-hover: rgba(255, 255, 255, 0.1);
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: var(--darker);
-            color: var(--light);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
-            backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .theme-toggle {
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            color: var(--light);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient 5s ease infinite;
-            background-size: 200% 200%;
-        }
-
-        @keyframes gradient {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero .subtitle {
-            font-size: clamp(1.2rem, 4vw, 2rem);
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 2rem;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            background: rgba(0, 212, 255, 0.1);
-        }
-
-        /* Stats */
-        .stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 4rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stat-label {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.9rem;
-        }
-
-        /* Sections */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .about-img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            margin: 0 auto;
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .about-text p {
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2rem;
-            padding-left: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2rem;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            background: var(--primary);
-            border-radius: 50%;
-            transform: translateX(-5px);
-        }
-
-        .timeline-date {
-            color: var(--primary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            border-radius: 15px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            background: var(--glass-hover);
-            border-color: var(--primary);
-        }
-
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-name {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-level {
-            height: 6px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 3px;
-            transition: width 1s ease;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
-        }
-
-        .project-img {
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-desc {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: rgba(0, 212, 255, 0.2);
-            color: var(--primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-        }
-
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 1rem;
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            border-radius: 10px;
-            color: white;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        /* Guestbook */
-        .guestbook-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .guestbook-form {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .guestbook-form input {
-            flex: 1;
-            padding: 1rem;
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            border-radius: 10px;
-            color: white;
-        }
-
-        .guestbook-messages {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .guestbook-msg {
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            border-radius: 10px;
-            padding: 1rem;
-        }
-
-        .guestbook-msg .author {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .guestbook-msg .text {
-            color: rgba(255,255,255,0.8);
-        }
-
-        /* Mini Game */
-        .game-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .game-canvas {
-            background: var(--darker);
-            border: 2px solid var(--glass-hover);
-            border-radius: 15px;
-            margin-bottom: 1rem;
-        }
-
-        .game-score {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        /* Quiz Section */
-        .quiz-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .quiz-question {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .quiz-option {
-            padding: 1rem 2rem;
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .quiz-option:hover {
-            background: var(--glass-hover);
-            border-color: var(--primary);
-        }
-
-        .quiz-option.correct {
-            background: rgba(0, 255, 0, 0.2);
-            border-color: #00ff00;
-        }
-
-        .quiz-option.wrong {
-            background: rgba(255, 0, 0, 0.2);
-            border-color: #ff0000;
-        }
-
-        .quiz-result {
-            margin-top: 2rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        /* Secret Section */
-        .secret-section {
-            display: none;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            text-align: center;
-        }
-
-        .secret-section.visible {
-            display: block;
-            animation: secretGlow 2s ease infinite alternate;
-        }
-
-        @keyframes secretGlow {
-            from { box-shadow: inset 0 0 100px rgba(123, 44, 191, 0.3); }
-            to { box-shadow: inset 0 0 200px rgba(123, 44, 191, 0.6); }
-        }
-
-        .konami {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.3);
-            cursor: pointer;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .footer-text {
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* Mobile Menu */
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .mobile-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(0,0,0,0.9);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1rem;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Quote Widget */
-        .quote-widget {
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            margin: 2rem auto;
-            max-width: 600px;
-        }
-
-        .quote-text {
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .quote-author {
-            color: var(--primary);
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">Phil's Space</div>
-        <button class="mobile-toggle" onclick="toggleMobile()">☰</button>
-        <ul class="nav-links">
-            <li><a href="#about">Über</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projekte</a></li>
-            <li><a href="#game">Spiel</a></li>
-            <li><a href="#quiz">Quiz</a></li>
-            <li><a href="#guestbook">Gästebuch</a></li>
-            <li><a href="#contact">Kontakt</a></li>
-        </ul>
-        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <canvas id="particles"></canvas>
-        <div class="hero-content">
-            <h1>Phil's Space</h1>
-            <p class="subtitle">Student. Creator. Dreamer. 🚀</p>
-            
-            <div class="hero-btns">
-                <a href="#projects" class="btn btn-primary">Meine Projekte</a>
-                <a href="#contact" class="btn btn-secondary">Kontakt</a>
-            </div>
-
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number" id="time">--:--</div>
-                    <div class="stat-label">Uhrzeit</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number" id="date">--</div>
-                    <div class="stat-label">Datum</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">Möglichkeiten</div>
+text">Coole Seite! Weiter so! 👍</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Quote Widget -->
-    <div class="quote-widget fade-in">
-        <p class="quote-text" id="quote">"Das Leben ist wie ein Programm – je mehr du investierst, desto besser wird es!"</p>
-        <p class="quote-author">— Unbekannt</p>
-    </div>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title fade-in">Über Mich</h2>
-        <div class="about-grid">
-            <div class="about-img fade-in">👨‍💻</div>
-            <div class="about-text fade-in">
-                <h3>Hallo, ich bin Phil!</h3>
-                <p>Ich bin ein neugieriger Student aus Deutschland, der gerne neue Dinge ausprobiert und erschafft. Ob Coding, Design oder einfach nur Spaß haben – ich bin dabei!</p>
-                <p>Diese Seite ist mein digitaler Spielplatz. Hier teste ich, bastle ich, und manchmal zerbreche ich auch Dinge (aber das gehört dazu!).</p>
-                
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <p class="timeline-date">2024 - Heute</p>
-                        <h4 class="timeline-title">Student & Creator</h4>
-                        <p style="color: rgba(255,255,255,0.6);">Lerne, wachse, erschaffe</p>
-                    </div>
-                    <div class="timeline-item">
-                        <p class="timeline-date">2023</p>
-                        <h4 class="timeline-title">Erste Webseite gebaut</h4>
-                        <p style="color: rgba(255,255,255,0.6);">Der Anfang von allem</p>
-                    </div>
-                    <div class="timeline-item">
-                        <p class="timeline-date">2019</p>
-                        <h4 class="timeline-title">Erste Zeile Code</h4>
-                        <p style="color: rgba(255,255,255,0.6);">"Hello World!"</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title fade-in">Meine Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card fade-in">
-                <div class="skill-icon">💻</div>
-                <p class="skill-name">Web Dev</p>
-                <div class="skill-level"><div class="skill-progress" style="width: 85%"></div></div>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">🎨</div>
-                <p class="skill-name">Design</p>
-                <div class="skill-level"><div class="skill-progress" style="width: 70%"></div></div>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">🐍</div>
-                <p class="skill-name">Python</p>
-                <div class="skill-level"><div class="skill-progress" style="width: 75%"></div></div>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">☁️</div>
-                <p class="skill-name">Cloud</p>
-                <div class="skill-level"><div class="skill-progress" style="width: 65%"></div></div>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">📱</div>
-                <p class="skill-name">Mobile</p>
-                <div class="skill-level"><div class="skill-progress" style="width: 60%"></div></div>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">🤖</div>
-                <p class="skill-name">AI/ML</p>
-                <div class="skill-level"><div class="skill-progress" style="width: 55%"></div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="section-title fade-in">Meine Projekte</h2>
-        <div class="projects-grid">
-            <div class="project-card fade-in">
-                <div class="project-img">🚀</div>
-                <div class="project-content">
-                    <h3 class="project-title">Phil's Space</h3>
-                    <p class="project-desc">Meine persönliche Portfolio-Webseite – genau diese hier!</p>
-                    <div class="project-tags">
-                        <span class="tag">HTML/CSS/JS</span>
-                        <span class="tag">Responsive</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-img">📱</div>
-                <div class="project-content">
-                    <h3 class="project-title">Todo App</h3>
-                    <p class="project-desc">Eine simple To-Do Liste mit lokalem Speicher.</p>
-                    <div class="project-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">LocalStorage</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-img">🎮</div>
-                <div class="project-content">
-                    <h3 class="project-title">Snake Game</h3>
-                    <p class="project-desc">Das klassische Snake-Spiel – neu interpretiert.</p>
-                    <div class="project-tags">
-                        <span class="tag">Canvas</span>
-                        <span class="tag">Game Dev</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-img">🤖</div>
-                <div class="project-content">
-                    <h3 class="project-title">AI Assistant</h3>
-                    <p class="project-desc">Mein persönlicher KI-Assistent auf dem Raspberry Pi.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">AI</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mini Game Section -->
-    <section id="game">
-        <h2 class="section-title fade-in">🎮 Snake Game</h2>
-        <div class="game-container fade-in">
-            <p class="game-score">Score: <span id="snakeScore">0</span></p>
-            <canvas id="snakeCanvas" class="game-canvas" width="400" height="400"></canvas>
-            <div>
-                <button class="btn btn-primary" onclick="startSnake()">Start Game</button>
-                <button class="btn btn-secondary" onclick="resetSnake()">Reset</button>
-            </div>
-            <p style="margin-top: 1rem; color: rgba(255,255,255,0.6);">Steuerung: Pfeiltasten oder WASD</p>
-        </div>
-    </section>
-
-    <!-- Quiz Section -->
-    <section id="quiz">
-        <h2 class="section-title fade-in">🧠 Quick Quiz</h2>
-        <div class="quiz-container fade-in">
-            <p class="quiz-question" id="quizQuestion">Was ist die Antwort auf alles?</p>
-            <div class="quiz-options" id="quizOptions">
-                <div class="quiz-option" onclick="checkAnswer(0, this)">42</div>
-                <div class="quiz-option" onclick="checkAnswer(1, this)">Pi</div>
-                <div class="quiz-option" onclick="checkAnswer(2, this)">E = mc²</div>
-                <div class="quiz-option" onclick="checkAnswer(3, this)">JavaScript</div>
-            </div>
-            <p class="quiz-result" id="quizResult"></p>
-        </div>
-    </section>
-
-    <!-- Guestbook Section -->
-    <section id="guestbook">
-        <h2 class="section-title fade-in">📖 Gästebuch</h2>
-        <div class="guestbook-container fade-in">
-            <div class="guestbook-form">
-                <input type="text" id="guestName" placeholder="Dein Name">
-                <input type="text" id="guestMsg" placeholder="Deine Nachricht...">
-                <button class="btn btn-primary" onclick="addGuestbookEntry()">Senden</button>
-            </div>
-            <div class="guestbook-messages" id="guestbookMessages">
-                <div class="guestbook-msg">
-                    <p class="author">Klaus</p>
-                    <p class="text">Willkommen auf Phils Space! Viel Spaß hier! 🤖</p>
-                </div>
-                <div class="guestbook-msg">
-                    <p class="author">Gast</p>
-                    <p class="text">Coole Seite! Weiter so! 👍</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
+    <!-- 
+        CONTACT SECTION
+        ==============
+        Kontaktformular und Kontaktdaten.
+    -->
     <section id="contact">
         <h2 class="section-title fade-in">📬 Kontakt</h2>
         <div class="contact-container fade-in">
+            <!-- Kontaktformular -->
             <form class="contact-form" onsubmit="sendMessage(event)">
                 <div class="form-group">
                     <label>Name</label>
@@ -981,6 +28,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Absenden</button>
             </form>
+            <!-- Kontakt-Informationen -->
             <div class="contact-info">
                 <div class="contact-item">
                     <div class="contact-icon">📧</div>
@@ -1007,14 +55,22 @@
         </div>
     </section>
 
-    <!-- Secret Section -->
+    <!-- 
+        SECRET SECTION
+        ==============
+        Versteckte Sektion, erscheint bei Easter Egg.
+    -->
     <section class="secret-section" id="secretSection">
         <h2>🎉 Du hast das Geheimnis gefunden!</h2>
         <p style="font-size: 1.2rem; margin-top: 1rem;">Herzlichen Glückwunsch, du hast die versteckte Sektion entdeckt!</p>
         <p style="margin-top: 1rem; font-size: 3rem;">🎊🎉🎊</p>
     </section>
 
-    <!-- Footer -->
+    <!-- 
+        FOOTER
+        ======
+        Unten auf der Seite.
+    -->
     <footer>
         <div class="social-links">
             <a href="#" class="social-link">🐦</a>
@@ -1025,103 +81,176 @@
         <p class="footer-text">© 2026 Phil's Space. Made with ❤️ and ☕</p>
     </footer>
 
+    <!-- Verstecktes Easter Egg -->
     <div class="konami" onclick="triggerSecret()">🤫</div>
 
+    <!-- 
+        JAVASCRIPT
+        ==========
+        Alle interaktiven Funktionen.
+    -->
+
     <script>
-        // Time Update
+        /* 
+            ZEIT UPDATE
+            ===========
+            Zeigt die aktuelle Uhrzeit und Datum an.
+        */
         function updateTime() {
-            const now = new Date();
+            const now = new Date();  // Aktuelles Datum/Uhrzeit holen
+            
+            // Uhrzeit formatieren (HH:MM)
             document.getElementById('time').textContent = now.toLocaleTimeString('de-DE', {
                 hour: '2-digit',
                 minute: '2-digit'
             });
+            
+            // Datum formatieren (TT. MMM)
             document.getElementById('date').textContent = now.toLocaleDateString('de-DE', {
                 day: '2-digit',
                 month: 'short'
             });
         }
+        
+        // Funktion aufrufen und jede Sekunde wiederholen
         updateTime();
         setInterval(updateTime, 1000);
 
-        // Particles Background
+
+        /* 
+            PARTIKEL HINTERGRUND
+            ====================
+            Animierte Partikel im Hero-Bereich.
+        */
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
+        
+        // Canvas an Fenstergröße anpassen
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+        // Partikel-Array erstellen
         const particles = [];
-        const particleCount = 50;
+        const particleCount = 50;  // Anzahl der Partikel
 
+        // Partikel initialisieren
         for (let i = 0; i < particleCount; i++) {
             particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                size: Math.random() * 3 + 1
+                x: Math.random() * canvas.width,   // Zufällige X-Position
+                y: Math.random() * canvas.height, // Zufällige Y-Position
+                vx: (Math.random() - 0.5) * 0.5,  // Zufällige X-Geschwindigkeit
+                vy: (Math.random() - 0.5) * 0.5,  // Zufällige Y-Geschwindigkeit
+                size: Math.random() * 3 + 1        // Zufällige Größe
             });
         }
 
+        // Animations-Funktion
         function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);  // Canvas löschen
+            
+            // Jedes Partikel aktualisieren
             particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
+                p.x += p.vx;  // X-Position ändern
+                p.y += p.vy;  // Y-Position ändern
+                
+                // An Rand abprallen
                 if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
                 if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                
+                // Partikel zeichnen
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 212, 255, 0.5)';
+                ctx.fillStyle = 'rgba(0, 212, 255, 0.5)';  // Blaue Farbe
                 ctx.fill();
             });
+            
+            // Nächsten Frame animieren
             requestAnimationFrame(animateParticles);
         }
+        
+        // Animation starten
         animateParticles();
 
-        // Scroll Animations
+
+        /* 
+            SCROLL ANIMATIONEN
+            ==================
+            Elemente einblenden beim Scrollen.
+        */
         const observer = new IntersectionObserver((entries) => {
+            // Wenn Element sichtbar ist
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.1 });  // 10% sichtbar = auslösen
 
+        // Alle fade-in Elemente beobachten
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Mobile Toggle
+
+        /* 
+            MOBILE MENU
+            ===========
+            Hamburger-Menü für Mobile.
+        */
         function toggleMobile() {
             document.querySelector('.nav-links').classList.toggle('active');
         }
 
-        // Theme Toggle
-        let isDark = true;
+
+        /* 
+            DARK/LIGHT MODE
+            ===============
+            Zwischen dunklem und hellem Modus wechseln.
+        */
+        let isDark = true;  // Standard: Dark Mode
+        
         function toggleTheme() {
-            isDark = !isDark;
+            isDark = !isDark;  // Mode umschalten
+            
+            // CSS Variablen ändern
             document.documentElement.style.setProperty('--darker', isDark ? '#050508' : '#f5f5f5');
             document.documentElement.style.setProperty('--dark', isDark ? '#0a0a0f' : '#ffffff');
             document.documentElement.style.setProperty('--light', isDark ? '#f0f0f0' : '#1a1a1a');
-            document.body.style.background = isDark ? '#050508' : '#f5f5        }
+            document.body.style.background = isDark ? '#050508' : '#f5f5f5';
+        }
 
-        // Snake Game
-        let snake, food, score, gameInterval, gameRunning;
-        const gridSize = 20;
+
+        /* 
+            SNAKE SPIEL
+            ===========
+            Das klassische Snake-Spiel.
+        */
+        let snake = [];      // Array mit Schlangen-Segmenten
+        let food = {};      // Position des Essens
+        let score = 0;      // Punktestand
+        let gameInterval;   // Intervall-ID für das Spiel
+        let gameRunning = false;  // Spiel läuft?
+        const gridSize = 20; // Größe eines Feldes
         
+        // Richtung der Schlange
+        let direction = 'right';
+
+        // Spiel initialisieren
         function initSnake() {
-            snake = [{x: 10, y: 10}];
+            snake = [{x: 10, y: 10}];  // Schlange in der Mitte starten
             score = 0;
             gameRunning = false;
             document.getElementById('snakeScore').textContent = '0';
         }
         
+        // Spiel starten
         function startSnake() {
-            if (gameRunning) return;
+            if (gameRunning) return;  // Wenn schon läuft, nichts tun
             initSnake();
             gameRunning = true;
-            placeFood();
-            gameInterval = setInterval(updateSnake, 100);
+            placeFood();  // Essen platzieren
+            gameInterval = setInterval(updateSnake, 100);  // Alle 100ms updaten
         }
         
+        // Spiel zurücksetzen
         function resetSnake() {
             clearInterval(gameInterval);
             gameRunning = false;
@@ -1131,6 +260,7 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
         
+        // Essen an zufälliger Position platzieren
         function placeFood() {
             food = {
                 x: Math.floor(Math.random() * (canvas.width / gridSize)),
@@ -1138,13 +268,18 @@
             };
         }
         
+        // Spiel-Update (jeder Frame)
         function updateSnake() {
+            // Neue Kopfposition berechnen
             const head = { ...snake[0] };
+            
+            // Kopf in Bewegungsrichtung verschieben
             if (direction === 'up') head.y--;
             if (direction === 'down') head.y++;
             if (direction === 'left') head.x--;
             if (direction === 'right') head.x++;
             
+            // Kollisionsprüfung: Wand oder sich selbst
             if (head.x < 0 || head.x >= canvas.width / gridSize || 
                 head.y < 0 || head.y >= canvas.height / gridSize ||
                 snake.some(s => s.x === head.x && s.y === head.y)) {
@@ -1153,33 +288,39 @@
                 return;
             }
             
+            // Kopf zur Schlange hinzufügen
             snake.unshift(head);
             
+            // Essen gegessen?
             if (head.x === food.x && head.y === food.y) {
                 score++;
                 document.getElementById('snakeScore').textContent = score;
-                placeFood();
+                placeFood();  // Neues Essen
             } else {
-                snake.pop();
+                snake.pop();  // Schwanz entfernen (Bewegung)
             }
             
-            drawSnake();
+            drawSnake();  // Schlange neu zeichnen
         }
         
+        // Schlange zeichnen
         function drawSnake() {
             const ctx = document.getElementById('snakeCanvas').getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
+            // Jedes Segment zeichnen
             snake.forEach((segment, i) => {
+                // Kopf ist blau, Körper ist lila
                 ctx.fillStyle = i === 0 ? '#00d4ff' : '#7b2cbf';
                 ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
             });
             
+            // Essen zeichnen (pink)
             ctx.fillStyle = '#ff006e';
             ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
         }
         
-        let direction = 'right';
+        // Tastatur-Steuerung
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowUp' || e.key === 'w') direction = 'up';
             if (e.key === 'ArrowDown' || e.key === 's') direction = 'down';
@@ -1187,19 +328,29 @@
             if (e.key === 'ArrowRight' || e.key === 'd') direction = 'right';
         });
 
-        // Quiz
+
+        /* 
+            QUIZ SPIEL
+            ==========
+            Kleines Quiz mit Fragen.
+        */
         const questions = [
+            // Array mit Fragen, Antwortmöglichkeiten und korrekter Antwort
             { q: 'Was ist die Antwort auf alles?', options: ['42', 'Pi', 'E = mc²', 'JavaScript'], a: 0 },
             { q: 'Was ist 2 + 2?', options: ['3', '4', '5', '22'], a: 1 },
             { q: 'Welche Sprache lernt man zuerst?', options: ['Python', 'C++', 'HTML', 'Alle'], a: 2 }
         ];
-        let currentQ = 0;
+        let currentQ = 0;  // Aktuelle Frage
         
+        // Antwort prüfen
         function checkAnswer(idx, el) {
+            // Wenn Antwort richtig
             if (idx === questions[currentQ].a) {
                 el.classList.add('correct');
                 document.getElementById('quizResult').textContent = '✅ Richtig!';
                 document.getElementById('quizResult').style.color = '#00ff00';
+                
+                // Nächste Frage nach 1 Sekunde
                 setTimeout(() => {
                     currentQ = (currentQ + 1) % questions.length;
                     document.getElementById('quizQuestion').textContent = questions[currentQ].q;
@@ -1210,53 +361,80 @@
                     document.getElementById('quizResult').textContent = '';
                 }, 1000);
             } else {
+                // Antwort falsch
                 el.classList.add('wrong');
                 document.getElementById('quizResult').textContent = '❌ Falsch!';
                 document.getElementById('quizResult').style.color = '#ff0000';
             }
         }
 
-        // Guestbook
+
+        /* 
+            GÄSTEBUCH
+            =========
+            Neue Einträge hinzufügen.
+        */
         function addGuestbookEntry() {
             const name = document.getElementById('guestName').value;
             const msg = document.getElementById('guestMsg').value;
-            if (name && msg) {
+            
+            if (name && msg) {  // Wenn beide Felder ausgefüllt
                 const container = document.getElementById('guestbookMessages');
                 const div = document.createElement('div');
                 div.className = 'guestbook-msg';
                 div.innerHTML = `<p class="author">${name}</p><p class="text">${msg}</p>`;
-                container.insertBefore(div, container.firstChild);
+                container.insertBefore(div, container.firstChild);  // Nachricht oben einfügen
+                
+                // Felder leeren
                 document.getElementById('guestName').value = '';
                 document.getElementById('guestMsg').value = '';
             }
         }
 
-        // Contact Form
+
+        /* 
+            KONTAKT FORMULAR
+            ================
+            Nachricht senden (nur Simulation).
+        */
         function sendMessage(e) {
-            e.preventDefault();
+            e.preventDefault();  // Formular absenden verhindern
             alert('Danke für deine Nachricht! Ich melde mich bald! 📧');
-            e.target.reset();
+            e.target.reset();  // Formular leeren
         }
 
-        // Secret
-        let secretClicks = 0;
+
+        /* 
+            EASTER EGG
+            ==========
+            Versteckte Sektion anzeigen.
+        */
+        let secretClicks = 0;  // Klick-Zähler
+        
         function triggerSecret() {
             secretClicks++;
-            if (secretClicks === 5) {
+            if (secretClicks === 5) {  // Nach 5 Klicks
                 document.getElementById('secretSection').classList.add('visible');
                 secretClicks = 0;
+                // Nach 5 Sekunden wieder verstecken
                 setTimeout(() => {
                     document.getElementById('secretSection').classList.remove('visible');
                 }, 5000);
             }
         }
 
-        // Resize handler
+
+        /* 
+            RESIZE HANDLER
+            ==============
+            Canvas bei Fenstergröße-Änderung anpassen.
+        */
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
 
+        // Spiel initialisieren beim Laden
         initSnake();
     </script>
 </body>
