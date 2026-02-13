@@ -12,8 +12,10 @@
             --dark: #0a0f0a;
             --darker: #051005;
             --light: #e0ffe0;
-            --glass: rgba(0, 255, 136, 0.05);
-            --glass-hover: rgba(0, 255, 136, 0.1);
+            --glass: rgba(0, 255, 136, 0.08);
+            --glass-hover: rgba(0, 255, 136, 0.15);
+            --text: #e0ffe0;
+            --text-muted: #a0d0a0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,7 +23,7 @@
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
             background: var(--darker);
-            color: var(--light);
+            color: var(--text);
             line-height: 1.6;
         }
 
@@ -37,14 +39,10 @@
             backdrop-filter: blur(10px);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
 
         .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--light); text-decoration: none; transition: color 0.3s; }
+        .nav-links a { color: var(--text); text-decoration: none; transition: color 0.3s; }
         .nav-links a:hover { color: var(--primary); }
 
         .theme-toggle {
@@ -52,10 +50,10 @@
             border: 1px solid var(--glass-hover);
             padding: 0.5rem 1rem;
             border-radius: 25px;
-            color: var(--light);
+            color: var(--text);
             cursor: pointer;
         }
-        .theme-toggle:hover { background: var(--primary); color: var(--dark); }
+        .theme-toggle:hover { background: var(--primary); color: var(--darker); }
 
         .hero {
             min-height: 100vh;
@@ -67,19 +65,8 @@
             padding: 2rem;
         }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 2rem;
-        }
-
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 800; color: var(--primary); margin-bottom: 1rem; }
+        .hero .subtitle { font-size: 1.5rem; color: var(--text-muted); margin-bottom: 2rem; }
         .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
         .btn {
@@ -91,20 +78,20 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.3s;
+            display: inline-block;
         }
 
-        .btn-primary { background: var(--primary); color: var(--dark); }
+        .btn-primary { background: var(--primary); color: var(--darker); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,255,136,0.3); }
 
         .btn-secondary { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
-        .btn-secondary:hover { background: var(--primary); color: var(--dark); }
+        .btn-secondary:hover { background: var(--primary); color: var(--darker); }
 
         section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
-
         .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--primary); }
 
         .about { text-align: center; max-width: 700px; margin: 0 auto; }
-        .about p { font-size: 1.2rem; color: rgba(255,255,255,0.8); }
+        .about p { font-size: 1.2rem; color: var(--text-muted); }
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; }
 
@@ -134,18 +121,18 @@
         }
         .project-card:hover { border-color: var(--primary); transform: translateY(-5px); }
         .project-title { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--primary); }
-        .project-desc { color: rgba(255,255,255,0.7); }
+        .project-desc { color: var(--text-muted); }
 
         .contact { text-align: center; }
         .contact-email { font-size: 1.5rem; color: var(--primary); text-decoration: none; }
         .contact-email:hover { text-decoration: underline; }
 
-        footer { text-align: center; padding: 3rem; color: rgba(255,255,255,0.5); }
+        footer { text-align: center; padding: 3rem; color: var(--text-muted); }
 
         .mobile-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
         @media (max-width: 768px) {
             .mobile-toggle { display: block; }
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.9); flex-direction: column; padding: 2rem; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); flex-direction: column; padding: 2rem; }
             .nav-links.active { display: flex; }
         }
     </style>
@@ -224,12 +211,16 @@
                 document.documentElement.style.setProperty('--darker', '#051005');
                 document.documentElement.style.setProperty('--dark', '#0a0f0a');
                 document.documentElement.style.setProperty('--light', '#e0ffe0');
+                document.documentElement.style.setProperty('--text', '#e0ffe0');
+                document.documentElement.style.setProperty('--text-muted', '#a0d0a0');
                 document.body.style.background = '#051005';
             } else {
-                document.documentElement.style.setProperty('--darker', '#e0ffe0');
-                document.documentElement.style.setProperty('--dark', '#ccffcc');
-                document.documentElement.style.setProperty('--light', '#051005');
-                document.body.style.background = '#e0ffe0';
+                document.documentElement.style.setProperty('--darker', '#ffffff');
+                document.documentElement.style.setProperty('--dark', '#f0fff0');
+                document.documentElement.style.setProperty('--light', '#1a1a1a');
+                document.documentElement.style.setProperty('--text', '#1a3a1a');
+                document.documentElement.style.setProperty('--text-muted', '#2a5a2a');
+                document.body.style.background = '#ffffff';
             }
         }
 

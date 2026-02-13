@@ -8,12 +8,13 @@
         :root {
             --primary: #00ff88;
             --secondary: #00cc6a;
-            --accent: #00ffaa;
             --dark: #0a0f0a;
             --darker: #051005;
             --light: #e0ffe0;
-            --glass: rgba(0, 255, 136, 0.05);
-            --glass-hover: rgba(0, 255, 136, 0.1);
+            --glass: rgba(0, 255, 136, 0.08);
+            --glass-hover: rgba(0, 255, 136, 0.15);
+            --text: #e0ffe0;
+            --text-muted: #a0d0a0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,7 +22,7 @@
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
             background: var(--darker);
-            color: var(--light);
+            color: var(--text);
             line-height: 1.6;
         }
 
@@ -37,13 +38,6 @@
             backdrop-filter: blur(10px);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
         .back-btn {
             color: var(--primary);
             text-decoration: none;
@@ -52,13 +46,20 @@
             border-radius: 25px;
             transition: all 0.3s;
         }
-        .back-btn:hover {
-            background: var(--primary);
-            color: var(--dark);
+        .back-btn:hover { background: var(--primary); color: var(--darker); }
+
+        .theme-toggle {
+            background: var(--glass);
+            border: 1px solid var(--glass-hover);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            color: var(--text);
+            cursor: pointer;
         }
+        .theme-toggle:hover { background: var(--primary); color: var(--darker); }
 
         .hero {
-            min-height: 60vh;
+            min-height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -67,23 +68,26 @@
             padding: 2rem;
         }
 
-        h1 {
-            font-size: clamp(2rem, 6vw, 4rem);
-            color: var(--primary);
-            margin-bottom: 1rem;
+        h1 { font-size: clamp(2rem, 6vw, 4rem); color: var(--primary); margin-bottom: 1rem; }
+        .subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-top: 1rem;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.7);
-            max-width: 600px;
-        }
+        .btn-primary { background: var(--primary); color: var(--darker); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,255,136,0.3); }
 
-        section {
-            padding: 4rem 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        section { padding: 4rem 2rem; max-width: 900px; margin: 0 auto; }
 
         .content-card {
             background: var(--glass);
@@ -93,46 +97,36 @@
             margin-bottom: 2rem;
         }
 
-        .content-card h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
+        .content-card h2 { color: var(--primary); margin-bottom: 1rem; }
+        .content-card p { color: var(--text-muted); margin-bottom: 0.8rem; }
 
-        .content-card p {
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 1rem;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
 
         .feature {
             background: rgba(0,255,136,0.1);
             padding: 1rem;
             border-radius: 10px;
             border-left: 3px solid var(--primary);
+            color: var(--text-muted);
         }
 
-        footer {
-            text-align: center;
-            padding: 3rem;
-            color: rgba(255,255,255,0.5);
-        }
+        footer { text-align: center; padding: 3rem; color: var(--text-muted); }
     </style>
 </head>
 <body>
     <nav>
-        <a href="index.html" class="logo">← Zurück</a>
         <a href="index.html" class="back-btn">← Portfolio</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
     </nav>
 
     <section class="hero">
-        <h1>KfW Projekt</h1>
+        <h1>🏦 KfW Projekt</h1>
         <p class="subtitle">Meine Webseite, die ich während meines KfW Besuchs erstellt habe.</p>
+        
+        <!-- HIER IST DER BUTTON! -->
+        <a href="https://kfw-projekt.de" target="_blank" class="btn btn-primary">
+            🌐 Webseite besuchen
+        </a>
     </section>
 
     <section>
@@ -148,7 +142,7 @@
                 <div class="feature">🌐 HTML5</div>
                 <div class="feature">🎨 CSS3</div>
                 <div class="feature">⚡ JavaScript</div>
-                <div class="feature">📱 Responsive Design</div>
+                <div class="feature">📱 Responsive</div>
             </div>
         </div>
 
@@ -163,5 +157,25 @@
     <footer>
         <p>© 2026 Philipp. Made with 💚</p>
     </footer>
+
+    <script>
+        let isDark = true;
+        function toggleTheme() {
+            isDark = !isDark;
+            if (isDark) {
+                document.documentElement.style.setProperty('--darker', '#051005');
+                document.documentElement.style.setProperty('--dark', '#0a0f0a');
+                document.documentElement.style.setProperty('--text', '#e0ffe0');
+                document.documentElement.style.setProperty('--text-muted', '#a0d0a0');
+                document.body.style.background = '#051005';
+            } else {
+                document.documentElement.style.setProperty('--darker', '#ffffff');
+                document.documentElement.style.setProperty('--dark', '#f0fff0');
+                document.documentElement.style.setProperty('--text', '#1a3a1a');
+                document.documentElement.style.setProperty('--text-muted', '#2a5a2a');
+                document.body.style.background = '#ffffff';
+            }
+        }
+    </script>
 </body>
 </html>
