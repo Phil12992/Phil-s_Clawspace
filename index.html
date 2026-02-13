@@ -1,441 +1,289 @@
-text">Coole Seite! Weiter so! 👍</p>
-                </div>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philipp | Programmer & AI Enthusiast</title>
+    <style>
+        /* GRÜNES COOLES DESIGN */
+        :root {
+            --primary: #00ff88;      /* Neon-Grün */
+            --secondary: #00cc6a;    /* Dunkler Grün */
+            --accent: #00ffaa;       /* Hell-Grün */
+            --dark: #0a0f0a;         /* Sehr dunkel Grün */
+            --darker: #051005;       /* Fast schwarz */
+            --light: #e0ffe0;        /* Helles Grün-Weiß */
+            --glass: rgba(0, 255, 136, 0.05);
+            --glass-hover: rgba(0, 255, 136, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--light); text-decoration: none; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .theme-toggle {
+            background: var(--glass);
+            border: 1px solid var(--glass-hover);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            color: var(--light);
+            cursor: pointer;
+        }
+        .theme-toggle:hover { background: var(--primary); color: var(--dark); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2rem;
+        }
+
+        .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--dark);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,255,136,0.3); }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .btn-secondary:hover { background: var(--primary); color: var(--dark); }
+
+        /* SECTIONS */
+        section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        /* ABOUT */
+        .about { text-align: center; max-width: 700px; margin: 0 auto; }
+        .about p { font-size: 1.2rem; color: rgba(255,255,255,0.8); }
+
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-hover);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .skill-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .skill-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .skill-name { font-weight: 600; font-size: 1.1rem; }
+
+        /* PROJECTS */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-hover);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        .project-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .project-title { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--primary); }
+        .project-desc { color: rgba(255,255,255,0.7); }
+
+        /* CONTACT */
+        .contact { text-align: center; }
+        .contact-email {
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .contact-email:hover { text-decoration: underline; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* MOBILE */
+        .mobile-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        @media (max-width: 768px) {
+            .mobile-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.9); flex-direction: column; padding: 2rem; }
+            .nav-links.active { display: flex; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Philipp</div>
+        <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
+        <ul class="nav-links">
+            <li><a href="#about">Über</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projekte</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </nav>
+
+    <section class="hero">
+        <h1>Philipp</h1>
+        <p class="subtitle">Programmer & AI Enthusiast 🚀</p>
+        <div class="hero-btns">
+            <a href="#projects" class="btn btn-primary">Meine Projekte</a>
+            <a href="#contact" class="btn btn-secondary">Kontakt</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">Über Mich</h2>
+        <div class="about">
+            <p>Hallo! Ich bin Philipp, ein Programmierer aus Deutschland.</p>
+            <p style="margin-top: 1rem;">Ich liebe es, mit Code zu arbeiten und KI zu nutzen, um coole Dinge zu bauen.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Meine Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🐍</div>
+                <p class="skill-name">Python</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <p class="skill-name">HTML</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <p class="skill-name">AI/KI</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💻</div>
+                <p class="skill-name">Programmieren</p>
             </div>
         </div>
     </section>
 
-    <!-- 
-        CONTACT SECTION
-        ==============
-        Kontaktformular und Kontaktdaten.
-    -->
+    <section id="projects">
+        <h2 class="section-title">Projekte</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3 class="project-title">KfW Besuch Webseite</h3>
+                <p class="project-desc">Webseite, die ich während meines KfW Besuchs erstellt habe.</p>
+            </div>
+            <div class="project-card">
+                <h3 class="project-title">Weitere Projekte...</h3>
+                <p class="project-desc">Folgen in Kürze! Lass uns zusammen was bauen.</p>
+            </div>
+        </div>
+    </section>
+
     <section id="contact">
-        <h2 class="section-title fade-in">📬 Kontakt</h2>
-        <div class="contact-container fade-in">
-            <!-- Kontaktformular -->
-            <form class="contact-form" onsubmit="sendMessage(event)">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" placeholder="Dein Name" required>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" placeholder="deine@email.de" required>
-                </div>
-                <div class="form-group">
-                    <label>Nachricht</label>
-                    <textarea placeholder="Deine Nachricht an mich..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Absenden</button>
-            </form>
-            <!-- Kontakt-Informationen -->
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <div>
-                        <p style="font-weight: 600;">Email</p>
-                        <p style="color: rgba(255,255,255,0.6);">phil@beispiel.de</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <div>
-                        <p style="font-weight: 600;">Standort</p>
-                        <p style="color: rgba(255,255,255,0.6);">Deutschland</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">💬</div>
-                    <div>
-                        <p style="font-weight: 600;">Social</p>
-                        <p style="color: rgba(255,255,255,0.6);">@Phil12992</p>
-                    </div>
-                </div>
-            </div>
+        <h2 class="section-title">Kontakt</h2>
+        <div class="contact">
+            <p style="margin-bottom: 1rem;">Melde dich gerne!</p>
+            <a href="mailto:phil.bruell@gmail.com" class="contact-email">phil.bruell@gmail.com</a>
         </div>
     </section>
 
-    <!-- 
-        SECRET SECTION
-        ==============
-        Versteckte Sektion, erscheint bei Easter Egg.
-    -->
-    <section class="secret-section" id="secretSection">
-        <h2>🎉 Du hast das Geheimnis gefunden!</h2>
-        <p style="font-size: 1.2rem; margin-top: 1rem;">Herzlichen Glückwunsch, du hast die versteckte Sektion entdeckt!</p>
-        <p style="margin-top: 1rem; font-size: 3rem;">🎊🎉🎊</p>
-    </section>
-
-    <!-- 
-        FOOTER
-        ======
-        Unten auf der Seite.
-    -->
     <footer>
-        <div class="social-links">
-            <a href="#" class="social-link">🐦</a>
-            <a href="#" class="social-link">📷</a>
-            <a href="#" class="social-link">💼</a>
-            <a href="#" class="social-link">🎮</a>
-        </div>
-        <p class="footer-text">© 2026 Phil's Space. Made with ❤️ and ☕</p>
+        <p>© 2026 Philipp. Made with 💚</p>
     </footer>
 
-    <!-- Verstecktes Easter Egg -->
-    <div class="konami" onclick="triggerSecret()">🤫</div>
-
-    <!-- 
-        JAVASCRIPT
-        ==========
-        Alle interaktiven Funktionen.
-    -->
-
     <script>
-        /* 
-            ZEIT UPDATE
-            ===========
-            Zeigt die aktuelle Uhrzeit und Datum an.
-        */
-        function updateTime() {
-            const now = new Date();  // Aktuelles Datum/Uhrzeit holen
-            
-            // Uhrzeit formatieren (HH:MM)
-            document.getElementById('time').textContent = now.toLocaleTimeString('de-DE', {
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            
-            // Datum formatieren (TT. MMM)
-            document.getElementById('date').textContent = now.toLocaleDateString('de-DE', {
-                day: '2-digit',
-                month: 'short'
-            });
-        }
-        
-        // Funktion aufrufen und jede Sekunde wiederholen
-        updateTime();
-        setInterval(updateTime, 1000);
-
-
-        /* 
-            PARTIKEL HINTERGRUND
-            ====================
-            Animierte Partikel im Hero-Bereich.
-        */
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        
-        // Canvas an Fenstergröße anpassen
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        // Partikel-Array erstellen
-        const particles = [];
-        const particleCount = 50;  // Anzahl der Partikel
-
-        // Partikel initialisieren
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,   // Zufällige X-Position
-                y: Math.random() * canvas.height, // Zufällige Y-Position
-                vx: (Math.random() - 0.5) * 0.5,  // Zufällige X-Geschwindigkeit
-                vy: (Math.random() - 0.5) * 0.5,  // Zufällige Y-Geschwindigkeit
-                size: Math.random() * 3 + 1        // Zufällige Größe
-            });
+        // Theme Toggle
+        let isDark = true;
+        function toggleTheme() {
+            isDark = !isDark;
+            if (isDark) {
+                document.documentElement.style.setProperty('--darker', '#051005');
+                document.documentElement.style.setProperty('--dark', '#0a0f0a');
+                document.documentElement.style.setProperty('--light', '#e0ffe0');
+                document.body.style.background = '#051005';
+            } else {
+                document.documentElement.style.setProperty('--darker', '#e0ffe0');
+                document.documentElement.style.setProperty('--dark', '#ccffcc');
+                document.documentElement.style.setProperty('--light', '#051005');
+                document.body.style.background = '#e0ffe0';
+            }
         }
 
-        // Animations-Funktion
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);  // Canvas löschen
-            
-            // Jedes Partikel aktualisieren
-            particles.forEach(p => {
-                p.x += p.vx;  // X-Position ändern
-                p.y += p.vy;  // Y-Position ändern
-                
-                // An Rand abprallen
-                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-                
-                // Partikel zeichnen
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 212, 255, 0.5)';  // Blaue Farbe
-                ctx.fill();
-            });
-            
-            // Nächsten Frame animieren
-            requestAnimationFrame(animateParticles);
-        }
-        
-        // Animation starten
-        animateParticles();
-
-
-        /* 
-            SCROLL ANIMATIONEN
-            ==================
-            Elemente einblenden beim Scrollen.
-        */
-        const observer = new IntersectionObserver((entries) => {
-            // Wenn Element sichtbar ist
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });  // 10% sichtbar = auslösen
-
-        // Alle fade-in Elemente beobachten
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-
-        /* 
-            MOBILE MENU
-            ===========
-            Hamburger-Menü für Mobile.
-        */
-        function toggleMobile() {
+        // Mobile Menu
+        function toggleMenu() {
             document.querySelector('.nav-links').classList.toggle('active');
         }
-
-
-        /* 
-            DARK/LIGHT MODE
-            ===============
-            Zwischen dunklem und hellem Modus wechseln.
-        */
-        let isDark = true;  // Standard: Dark Mode
-        
-        function toggleTheme() {
-            isDark = !isDark;  // Mode umschalten
-            
-            // CSS Variablen ändern
-            document.documentElement.style.setProperty('--darker', isDark ? '#050508' : '#f5f5f5');
-            document.documentElement.style.setProperty('--dark', isDark ? '#0a0a0f' : '#ffffff');
-            document.documentElement.style.setProperty('--light', isDark ? '#f0f0f0' : '#1a1a1a');
-            document.body.style.background = isDark ? '#050508' : '#f5f5f5';
-        }
-
-
-        /* 
-            SNAKE SPIEL
-            ===========
-            Das klassische Snake-Spiel.
-        */
-        let snake = [];      // Array mit Schlangen-Segmenten
-        let food = {};      // Position des Essens
-        let score = 0;      // Punktestand
-        let gameInterval;   // Intervall-ID für das Spiel
-        let gameRunning = false;  // Spiel läuft?
-        const gridSize = 20; // Größe eines Feldes
-        
-        // Richtung der Schlange
-        let direction = 'right';
-
-        // Spiel initialisieren
-        function initSnake() {
-            snake = [{x: 10, y: 10}];  // Schlange in der Mitte starten
-            score = 0;
-            gameRunning = false;
-            document.getElementById('snakeScore').textContent = '0';
-        }
-        
-        // Spiel starten
-        function startSnake() {
-            if (gameRunning) return;  // Wenn schon läuft, nichts tun
-            initSnake();
-            gameRunning = true;
-            placeFood();  // Essen platzieren
-            gameInterval = setInterval(updateSnake, 100);  // Alle 100ms updaten
-        }
-        
-        // Spiel zurücksetzen
-        function resetSnake() {
-            clearInterval(gameInterval);
-            gameRunning = false;
-            initSnake();
-            const canvas = document.getElementById('snakeCanvas');
-            const ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-        
-        // Essen an zufälliger Position platzieren
-        function placeFood() {
-            food = {
-                x: Math.floor(Math.random() * (canvas.width / gridSize)),
-                y: Math.floor(Math.random() * (canvas.height / gridSize))
-            };
-        }
-        
-        // Spiel-Update (jeder Frame)
-        function updateSnake() {
-            // Neue Kopfposition berechnen
-            const head = { ...snake[0] };
-            
-            // Kopf in Bewegungsrichtung verschieben
-            if (direction === 'up') head.y--;
-            if (direction === 'down') head.y++;
-            if (direction === 'left') head.x--;
-            if (direction === 'right') head.x++;
-            
-            // Kollisionsprüfung: Wand oder sich selbst
-            if (head.x < 0 || head.x >= canvas.width / gridSize || 
-                head.y < 0 || head.y >= canvas.height / gridSize ||
-                snake.some(s => s.x === head.x && s.y === head.y)) {
-                resetSnake();
-                alert('Game Over! Score: ' + score);
-                return;
-            }
-            
-            // Kopf zur Schlange hinzufügen
-            snake.unshift(head);
-            
-            // Essen gegessen?
-            if (head.x === food.x && head.y === food.y) {
-                score++;
-                document.getElementById('snakeScore').textContent = score;
-                placeFood();  // Neues Essen
-            } else {
-                snake.pop();  // Schwanz entfernen (Bewegung)
-            }
-            
-            drawSnake();  // Schlange neu zeichnen
-        }
-        
-        // Schlange zeichnen
-        function drawSnake() {
-            const ctx = document.getElementById('snakeCanvas').getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Jedes Segment zeichnen
-            snake.forEach((segment, i) => {
-                // Kopf ist blau, Körper ist lila
-                ctx.fillStyle = i === 0 ? '#00d4ff' : '#7b2cbf';
-                ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
-            });
-            
-            // Essen zeichnen (pink)
-            ctx.fillStyle = '#ff006e';
-            ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
-        }
-        
-        // Tastatur-Steuerung
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowUp' || e.key === 'w') direction = 'up';
-            if (e.key === 'ArrowDown' || e.key === 's') direction = 'down';
-            if (e.key === 'ArrowLeft' || e.key === 'a') direction = 'left';
-            if (e.key === 'ArrowRight' || e.key === 'd') direction = 'right';
-        });
-
-
-        /* 
-            QUIZ SPIEL
-            ==========
-            Kleines Quiz mit Fragen.
-        */
-        const questions = [
-            // Array mit Fragen, Antwortmöglichkeiten und korrekter Antwort
-            { q: 'Was ist die Antwort auf alles?', options: ['42', 'Pi', 'E = mc²', 'JavaScript'], a: 0 },
-            { q: 'Was ist 2 + 2?', options: ['3', '4', '5', '22'], a: 1 },
-            { q: 'Welche Sprache lernt man zuerst?', options: ['Python', 'C++', 'HTML', 'Alle'], a: 2 }
-        ];
-        let currentQ = 0;  // Aktuelle Frage
-        
-        // Antwort prüfen
-        function checkAnswer(idx, el) {
-            // Wenn Antwort richtig
-            if (idx === questions[currentQ].a) {
-                el.classList.add('correct');
-                document.getElementById('quizResult').textContent = '✅ Richtig!';
-                document.getElementById('quizResult').style.color = '#00ff00';
-                
-                // Nächste Frage nach 1 Sekunde
-                setTimeout(() => {
-                    currentQ = (currentQ + 1) % questions.length;
-                    document.getElementById('quizQuestion').textContent = questions[currentQ].q;
-                    document.querySelectorAll('.quiz-option').forEach((opt, i) => {
-                        opt.textContent = questions[currentQ].options[i];
-                        opt.classList.remove('correct', 'wrong');
-                    });
-                    document.getElementById('quizResult').textContent = '';
-                }, 1000);
-            } else {
-                // Antwort falsch
-                el.classList.add('wrong');
-                document.getElementById('quizResult').textContent = '❌ Falsch!';
-                document.getElementById('quizResult').style.color = '#ff0000';
-            }
-        }
-
-
-        /* 
-            GÄSTEBUCH
-            =========
-            Neue Einträge hinzufügen.
-        */
-        function addGuestbookEntry() {
-            const name = document.getElementById('guestName').value;
-            const msg = document.getElementById('guestMsg').value;
-            
-            if (name && msg) {  // Wenn beide Felder ausgefüllt
-                const container = document.getElementById('guestbookMessages');
-                const div = document.createElement('div');
-                div.className = 'guestbook-msg';
-                div.innerHTML = `<p class="author">${name}</p><p class="text">${msg}</p>`;
-                container.insertBefore(div, container.firstChild);  // Nachricht oben einfügen
-                
-                // Felder leeren
-                document.getElementById('guestName').value = '';
-                document.getElementById('guestMsg').value = '';
-            }
-        }
-
-
-        /* 
-            KONTAKT FORMULAR
-            ================
-            Nachricht senden (nur Simulation).
-        */
-        function sendMessage(e) {
-            e.preventDefault();  // Formular absenden verhindern
-            alert('Danke für deine Nachricht! Ich melde mich bald! 📧');
-            e.target.reset();  // Formular leeren
-        }
-
-
-        /* 
-            EASTER EGG
-            ==========
-            Versteckte Sektion anzeigen.
-        */
-        let secretClicks = 0;  // Klick-Zähler
-        
-        function triggerSecret() {
-            secretClicks++;
-            if (secretClicks === 5) {  // Nach 5 Klicks
-                document.getElementById('secretSection').classList.add('visible');
-                secretClicks = 0;
-                // Nach 5 Sekunden wieder verstecken
-                setTimeout(() => {
-                    document.getElementById('secretSection').classList.remove('visible');
-                }, 5000);
-            }
-        }
-
-
-        /* 
-            RESIZE HANDLER
-            ==============
-            Canvas bei Fenstergröße-Änderung anpassen.
-        */
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Spiel initialisieren beim Laden
-        initSnake();
     </script>
 </body>
 </html>
