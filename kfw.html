@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KfW Projekt | Philipp</title>
+    <title>KfW Praktikum | Philipp</title>
     <style>
         :root {
             --primary: #00ff88;
             --secondary: #00cc6a;
             --darker: #051005;
             --dark: #0a0f0a;
-            --light: #e0ffe0;
             --glass: rgba(0, 255, 136, 0.08);
             --glass-hover: rgba(0, 255, 136, 0.15);
             --text: #e0ffe0;
@@ -56,7 +55,7 @@
         .theme-toggle:hover { background: var(--primary); color: var(--darker); }
 
         .hero {
-            min-height: 70vh;
+            min-height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -65,18 +64,8 @@
             padding: 2rem;
         }
 
-        h1 {
-            font-size: clamp(2rem, 6vw, 4rem);
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .subtitle {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
+        h1 { font-size: clamp(2rem, 6vw, 4rem); color: var(--primary); margin-bottom: 1rem; }
+        .subtitle { font-size: 1.3rem; color: var(--text-muted); max-width: 700px; margin-bottom: 2rem; }
 
         .btn {
             padding: 1rem 2.5rem;
@@ -88,16 +77,9 @@
             font-weight: 600;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3); }
 
-        section {
-            padding: 4rem 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        section { padding: 3rem 2rem; max-width: 900px; margin: 0 auto; }
 
         .content-card {
             background: var(--glass);
@@ -107,23 +89,12 @@
             margin-bottom: 2rem;
         }
 
-        .content-card h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
+        .content-card h2 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem; }
+        .content-card p { color: var(--text-muted); margin-bottom: 1rem; line-height: 1.8; }
+        .content-card ul { color: var(--text-muted); margin-left: 1.5rem; margin-bottom: 1rem; }
+        .content-card li { margin-bottom: 0.5rem; }
 
-        .content-card p {
-            color: var(--text-muted);
-            margin-bottom: 0.8rem;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
 
         .feature {
             background: rgba(0, 255, 136, 0.1);
@@ -133,46 +104,18 @@
             color: var(--text-muted);
         }
 
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--primary); }
+        .timeline-item { position: relative; padding-bottom: 1.5rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 5px; width: 10px; height: 10px; background: var(--primary); border-radius: 50%; }
+        .timeline-date { color: var(--primary); font-size: 0.9rem; margin-bottom: 0.3rem; }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--primary);
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .stat-box { background: var(--glass); border: 1px solid var(--glass-hover); border-radius: 15px; padding: 1.5rem; text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 700; color: var(--primary); }
+        .stat-label { color: var(--text-muted); font-size: 0.9rem; }
 
-        .timeline-item {
-            position: relative;
-            padding-bottom: 1.5rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2rem;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            background: var(--primary);
-            border-radius: 50%;
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-        }
-
-        @media (max-width: 768px) {
-            .hero { min-height: 50vh; }
-        }
+        footer { text-align: center; padding: 3rem; color: var(--text-muted); }
     </style>
 </head>
 <body>
@@ -182,26 +125,47 @@
     </nav>
 
     <section class="hero">
-        <h1>🏦 KfW Projekt</h1>
+        <h1>🏦 KfW Schülerpraktikum</h1>
         <p class="subtitle">
-            Während meines Besuchs bei der KfW habe ich diese Webseite erstellt. 
-            Es war eine tolle Erfahrung, praktische Erfahrung im Web-Development zu sammeln.
+            Mein einwöchiges Schülerpraktikum bei der KfW Bankengruppe. 
+            Eine Woche voller neuer Erfahrungen in der IT-Welt.
         </p>
-        <a href="indexone.html" class="btn">🌐 Webseite besuchen →</a>
+        <a href="indexone.html" class="btn">🌐 Meine KfW Webseite ansehen</a>
     </section>
 
     <section>
         <div class="content-card">
             <h2>📋 Projektübersicht</h2>
             <p>
-                Im Rahmen meines KfW Besuchs durfte ich eine vollständige Webseite entwickeln. 
-                Das Projekt bot mir die Möglichkeit, meine Fähigkeiten in der praktischen 
-                Webentwicklung unter Beweis zu stellen.
+                Im Rahmen meines Schülerpraktikums bei der KfW durfte ich eine vollständige Webseite entwickeln. 
+                Die KfW (Kreditanstalt für Wiederaufbau) ist eine der größten Förderbanken der Welt mit Sitz in Frankfurt.
             </p>
             <p>
-                Die Webseite wurde von Grund auf mit HTML, CSS und JavaScript erstellt 
-                und ist vollständig responsiv für alle Geräte optimiert.
+                Während dieses Praktikums konnte ich wertvolle Einblicke in die Arbeitswelt eines großen Unternehmens gewinnen 
+                und meine Fähigkeiten in der Webentwicklung praktisch anwenden.
             </p>
+        </div>
+
+        <div class="content-card">
+            <h2>📊 Fakten zum Praktikum</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Tage</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Webseite</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Selbstgemacht</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Spaß</div>
+                </div>
+            </div>
         </div>
 
         <div class="content-card">
@@ -211,50 +175,76 @@
                 <div class="feature">🎨 CSS3</div>
                 <div class="feature">⚡ JavaScript</div>
                 <div class="feature">📱 Responsive Design</div>
-                <div class="feature">🎯 UX/UI Design</div>
-                <div class="feature">⚡ Performance</div>
+                <div class="feature">🎯 UX Basics</div>
+                <div class="feature">🔧 Debugging</div>
             </div>
         </div>
 
         <div class="content-card">
-            <h2>📅 Projektverlauf</h2>
+            <h2>📅 Mein Praktikumsverlauf</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <p><strong>Tag 1:</strong> Projektplanung und Konzeption</p>
+                    <p class="timeline-date">Tag 1 - 09.02.2026</p>
+                    <p><strong>Willkommen bei der KfW</strong></p>
+                    <p style="color: var(--text-muted);">Kennenlernen der Mitarbeiter, Bereiche und Prozesse der IT-Abteilung. Erste Einführung in die Unternehmensstruktur.</p>
                 </div>
                 <div class="timeline-item">
-                    <p><strong>Tag 2-3:</strong> HTML Struktur und Inhalte</p>
+                    <p class="timeline-date">Tag 2 - 10.02.2026</p>
+                    <p><strong>Datenbanken & SQL</strong></p>
+                    <p style="color: var(--text-muted);">Einführung in Datenbanksysteme. SQL-Abfragen in einem Testtool ausprobiert. Gelernt, wie Daten gespeichert werden.</p>
                 </div>
                 <div class="timeline-item">
-                    <p><strong>Tag 4:</strong> Styling mit CSS</p>
+                    <p class="timeline-date">Tag 3 - 11.02.2026</p>
+                    <p><strong>Erste Schritte mit HTML</strong></p>
+                    <p style="color: var(--text-muted);">Anfangen mit HTML-Grundlagen. Erste eigene Seite nach Vorgaben programmiert. Hard- und Soft-Skills sowie die W-Fragen behandelt.</p>
                 </div>
                 <div class="timeline-item">
-                    <p><strong>Tag 5:</strong> JavaScript und Interaktionen</p>
+                    <p class="timeline-date">Tag 4 - 12.02.2026</p>
+                    <p><strong>CSS & Design</strong></p>
+                    <p style="color: var(--text-muted);">Weiterentwicklung der HTML-Seite. Grundlagen von CSS gelernt. Styling und Layout gestaltet.</p>
                 </div>
                 <div class="timeline-item">
-                    <p><strong>Tag 6:</strong> Testing und Optimierung</p>
-                </div>
-                <div class="timeline-item">
-                    <p><strong>Tag 7:</strong> Launch und Präsentation</p>
+                    <p class="timeline-date">Tag 5 - 13.02.2026</p>
+                    <p><strong>Finalisierung & Präsentation</strong></p>
+                    <p style="color: var(--text-muted);">Webseite fertiggestellt. Präsentation vor den Mitarbeitern. Feedback erhalten und Verbesserungen vorgenommen.</p>
                 </div>
             </div>
         </div>
 
         <div class="content-card">
             <h2>💡 Was ich gelernt habe</h2>
-            <p>• Praktische Webentwicklung unter realistischen Bedingungen</p>
-            <p>• Zeitmanagement und Projektplanung</p>
-            <p>• Kundenorientierte Umsetzung von Anforderungen</p>
-            <p>• Responsive Design für verschiedene Geräte</p>
-            <p>• Grundlagen von UX/UI Design</p>
+            <ul>
+                <li>Praktische Webentwicklung mit HTML, CSS und JavaScript</li>
+                <li>Grundlagen von Datenbanken und SQL</li>
+                <li>Zeitmanagement und Projektplanung</li>
+                <li>Arbeiten in einem professionellen IT-Team</li>
+                <li>Kundenorientierte Kommunikation</li>
+                <li>Selbstständiges Problemlösen</li>
+                <li>Grundlagen von UX/UI Design</li>
+            </ul>
         </div>
 
         <div class="content-card">
-            <h2>🎯 Highlights</h2>
+            <h2>🎯 Highlights des Projekts</h2>
             <p>✅ Moderne, ansprechende Benutzeroberfläche</p>
+            <p>✅ Interaktive Elemente (Ballons bei Button-Klick)</p>
             <p>✅ Vollständig responsiv für Mobile und Desktop</p>
-            <p>✅ Schnelle Ladezeiten</p>
-            <p>✅ Barrierefreie Gestaltung</p>
+            <p>✅ Tabellarische Übersicht der Tätigkeiten</p>
+            <p>✅ Professionelles Design im KfW-Stil</p>
+            <p>✅ Präsentationsreife Webseite</p>
+        </div>
+
+        <div class="content-card">
+            <h2>🏦 Über die KfW</h2>
+            <p>
+                Die KfW Bankengruppe ist eine der führenden Förderbanken der Welt. 
+                Sie unterstützt Projekte in Deutschland, Europa und weltweit - von Klimaschutz 
+                bis Bildungsförderung.
+            </p>
+            <p>
+                Das Praktikum bei der KfW war eine großartige Gelegenheit, 
+                ein internationales Unternehmen kennenzulernen und praktische Erfahrungen zu sammeln.
+            </p>
         </div>
     </section>
 
