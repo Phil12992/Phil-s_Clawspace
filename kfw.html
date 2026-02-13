@@ -3,179 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KfW Projekt | Philipp</title>
+    <title>Willkommen | Philipp</title>
     <style>
         :root {
             --primary: #00ff88;
-            --secondary: #00cc6a;
-            --dark: #0a0f0a;
             --darker: #051005;
-            --light: #e0ffe0;
-            --glass: rgba(0, 255, 136, 0.08);
-            --glass-hover: rgba(0, 255, 136, 0.15);
             --text: #e0ffe0;
             --text-muted: #a0d0a0;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
             background: var(--darker);
             color: var(--text);
-            line-height: 1.6;
-        }
-
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
-            backdrop-filter: blur(10px);
-        }
-
-        .back-btn {
-            color: var(--primary);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--primary);
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover { background: var(--primary); color: var(--darker); }
-
-        .theme-toggle {
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            color: var(--text);
-            cursor: pointer;
-        }
-        .theme-toggle:hover { background: var(--primary); color: var(--darker); }
-
-        .hero {
-            min-height: 50vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
             padding: 2rem;
         }
-
-        h1 { font-size: clamp(2rem, 6vw, 4rem); color: var(--primary); margin-bottom: 1rem; }
-        .subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; }
-
+        h1 { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; }
+        p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; }
         .btn {
             padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
+            background: var(--primary);
+            color: var(--darker);
             text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-            margin-top: 1rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.3s;
         }
-
-        .btn-primary { background: var(--primary); color: var(--darker); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,255,136,0.3); }
-
-        section { padding: 4rem 2rem; max-width: 900px; margin: 0 auto; }
-
-        .content-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-hover);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .content-card h2 { color: var(--primary); margin-bottom: 1rem; }
-        .content-card p { color: var(--text-muted); margin-bottom: 0.8rem; }
-
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
-
-        .feature {
-            background: rgba(0,255,136,0.1);
-            padding: 1rem;
-            border-radius: 10px;
-            border-left: 3px solid var(--primary);
-            color: var(--text-muted);
-        }
-
-        footer { text-align: center; padding: 3rem; color: var(--text-muted); }
+        .btn:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="back-btn">← Portfolio</a>
-        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-    </nav>
-
-    <section class="hero">
-        <h1>🏦 KfW Projekt</h1>
-        <p class="subtitle">Meine Webseite, die ich während meines KfW Besuchs erstellt habe.</p>
-        
-        <!-- HIER IST DER BUTTON! -->
-        <a href="https://kfw-projekt.de" target="_blank" class="btn btn-primary">
-            🌐 Webseite besuchen
-        </a>
-    </section>
-
-    <section>
-        <div class="content-card">
-            <h2>Über das Projekt</h2>
-            <p>Während meines Besuchs bei der KfW habe ich diese Webseite erstellt. Es war eine tolle Erfahrung, praktische Erfahrung im Web-Development zu sammeln.</p>
-            <p>Die Webseite zeigt, was ich in kurzer Zeit mit HTML, CSS und JavaScript umsetzen kann.</p>
-        </div>
-
-        <div class="content-card">
-            <h2>Technologien</h2>
-            <div class="features">
-                <div class="feature">🌐 HTML5</div>
-                <div class="feature">🎨 CSS3</div>
-                <div class="feature">⚡ JavaScript</div>
-                <div class="feature">📱 Responsive</div>
-            </div>
-        </div>
-
-        <div class="content-card">
-            <h2>Was ich gelernt habe</h2>
-            <p>• Praktische Webentwicklung</p>
-            <p>• Zeitmanagement unter Realbedingungen</p>
-            <p>• Kundenorientierte Umsetzung</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2026 Philipp. Made with 💚</p>
-    </footer>
-
-    <script>
-        let isDark = true;
-        function toggleTheme() {
-            isDark = !isDark;
-            if (isDark) {
-                document.documentElement.style.setProperty('--darker', '#051005');
-                document.documentElement.style.setProperty('--dark', '#0a0f0a');
-                document.documentElement.style.setProperty('--text', '#e0ffe0');
-                document.documentElement.style.setProperty('--text-muted', '#a0d0a0');
-                document.body.style.background = '#051005';
-            } else {
-                document.documentElement.style.setProperty('--darker', '#ffffff');
-                document.documentElement.style.setProperty('--dark', '#f0fff0');
-                document.documentElement.style.setProperty('--text', '#1a3a1a');
-                document.documentElement.style.setProperty('--text-muted', '#2a5a2a');
-                document.body.style.background = '#ffffff';
-            }
-        }
-    </script>
+    <h1>🏦 KfW Projekt</h1>
+    <p>Meine Webseite vom KfW Besuch</p>
+    <a href="indexone.html" class="btn">🌐 Webseite besuchen →</a>
 </body>
 </html>
