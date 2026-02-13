@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phil's Ecke</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 50px 50px;
+            animation: move 20s linear infinite;
+        }
+
+        @keyframes move {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50px); }
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf, #ff006e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 40px rgba(123, 44, 191, 0.8)); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #a0a0a0;
+            margin-bottom: 3rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .floating:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .floating:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 2s; }
+        .floating:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 3s; }
+        .floating:nth-child(5) { top: 50%; left: 5%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .stat-label {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+
+        .secret {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .secret:hover {
+            color: #00d4ff;
+        }
+
+        @media (max-width: 600px) {
+            .stats {
+                gap: 2rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <span class="floating">🚀</span>
+        <span class="floating">💡</span>
+        <span class="floating">🎯</span>
+        <span class="floating">⚡</span>
+        <span class="floating">🔥</span>
+    </div>
+
+    <section class="hero">
+        <div class="content">
+            <h1>Phil's Space</h1>
+            <p class="subtitle">Student. Creator. Dreamer.</p>
+
+            <div class="buttons">
+                <a href="#" class="btn btn-primary" onclick="alert('👋 Hallo Phil! Schön, dass du hier bist!'); return false;">Sag Hallo</a>
+                <a href="#" class="btn btn-secondary" onclick="showSecret(); return false;">Geheimes</a>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number" id="time">--:--</div>
+                    <div class="stat-label">Uhrzeit</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="date">--</div>
+                    <div class="stat-label">Datum</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Möglichkeiten</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="secret" onclick="easterEgg()">🤫</div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('time').textContent = now.toLocaleTimeString('de-DE', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('date').textContent = now.toLocaleDateString('de-DE', {
+                day: '2-digit',
+                month: 'short'
+            });
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        let clicks = 0;
+        function showSecret() {
+            clicks++;
+            if (clicks === 3) {
+                alert('🎉 Du hast den Easter Egg gefunden! Klaus says: Hi! 👋');
+                clicks = 0;
+            } else {
+                alert(`Noch ${3 - clicks} Klicks bis zum Geheimnis...`);
+            }
+        }
+
+        function easterEgg() {
+            const msgs = [
+                '🎯 Du bist auf dem richtigen Weg!',
+                '⚡ Energie ist alles!',
+                '💡 Wissen ist Macht!',
+                '🔥 Keep coding!',
+                '🚀 Träume groß!'
+            ];
+            alert(msgs[Math.floor(Math.random() * msgs.length)]);
+        }
+
+        // Konfetti bei Willkommensklick
+        document.querySelector('.btn-primary').addEventListener('click', function(e) {
+            createConfetti(e.clientX, e.clientY);
+        });
+
+        function createConfetti(x, y) {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    left: ${x}px;
+                    top: ${y}px;
+                    width: 10px;
+                    height: 10px;
+                    background: hsl(${Math.random() * 360}, 100%, 50%);
+                    pointer-events: none;
+                    animation: confetti-fall 1s ease-out forwards;
+                `;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 1000);
+            }
+        }
+
+        // CSS für Konfetti
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes confetti-fall {
+                to {
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
