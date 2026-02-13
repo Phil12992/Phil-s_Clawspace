@@ -1,0 +1,7 @@
+# OpenClaw private files
+*.md
+memory/
+.node_binary
+.env
+*.log
+
